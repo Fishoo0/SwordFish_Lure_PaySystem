@@ -23,13 +23,13 @@ import com.swordfish.paysystem.R;
 import java.util.List;
 
 
-public abstract class UserListFragment extends Fragment implements AdapterView.OnItemClickListener {
+public abstract class LogListFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     protected int mIndex;
 
-    private UserListViewModel mViewModel;
+    private DataBaseViewModel mViewModel;
 
-    public UserListFragment(int index, String title) {
+    public LogListFragment(int index, String title) {
         Bundle bundle = new Bundle();
         bundle.putInt("index",index);
         bundle.putString("title",title);
@@ -44,13 +44,13 @@ public abstract class UserListFragment extends Fragment implements AdapterView.O
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIndex = getArguments().getInt("index");
-        mViewModel = ViewModelProviders.of(getActivity()).get(UserListViewModel.class);
+        mViewModel = DataBaseViewModel.INSTANCE;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.users_list_layout,null);
+        View view = inflater.inflate(R.layout.logs_fragment_layout,null);
         ListView listView = view.findViewById(R.id.listview);
         listView.setAdapter(new ListAdapter(mViewModel.getLogs(mIndex)));
         listView.setOnItemClickListener(this);
@@ -64,7 +64,7 @@ public abstract class UserListFragment extends Fragment implements AdapterView.O
         private List<LogItem> mList;
 
         public ListAdapter(LiveData<List<LogItem>> data) {
-            data.observe(UserListFragment.this, new Observer<List<LogItem>>() {
+            data.observe(LogListFragment.this, new Observer<List<LogItem>>() {
                 @Override
                 public void onChanged(List<LogItem> logItems) {
                     mList = logItems;
@@ -120,7 +120,7 @@ public abstract class UserListFragment extends Fragment implements AdapterView.O
             TextView premium;
 
             ViewHolder(Context context) {
-                view = LayoutInflater.from(context).inflate(R.layout.user_list_item_layout,null);
+                view = LayoutInflater.from(context).inflate(R.layout.log_list_item_layout,null);
 
                 id = view.findViewById(R.id.id);
                 name = view.findViewById(R.id.name);

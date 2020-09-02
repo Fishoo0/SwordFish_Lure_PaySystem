@@ -1,92 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
->
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" android:orientation="vertical"
-        android:padding="10dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/TextView.Normal.Big"
-            android:text="信息录入：" />
+        android:layout_height="match_parent">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:layout_width="80dp"
+                style="@style/TextView.Normal.Big"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextView.Normal"
-                android:text="手机号：" />
+                android:text="信息录入：" />
 
-            <EditText
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                style="@style/TextView.Assistant"
-                android:hint="请输入手机号"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextView.Normal"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="手机号：" />
+
+                <EditText
+                    android:id="@+id/telephone_edittext"
+                    style="@style/TextView.Assistant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入手机号" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextView.Normal"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="姓名：" />
+
+                <EditText
+                    android:id="@+id/name_edittext"
+                    style="@style/TextView.Assistant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入名字" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextView.Normal"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="金额：" />
+
+                <EditText
+                    android:id="@+id/amout_edittext"
+                    style="@style/TextView.Assistant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入金额" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextView.Normal"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="卡号：" />
+
+                <EditText
+                    android:id="@+id/rent_card_edittext"
+                    style="@style/TextView.Assistant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入卡号" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text=" 开  卡 " />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                style="@style/TextView.Normal"
-                android:text="姓名：" />
-
-            <EditText
-                android:layout_width="match_parent"
-                style="@style/TextView.Assistant"
-                android:hint="请输入名字"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                style="@style/TextView.Normal"
-                android:text="金额：" />
-
-            <EditText
-                android:layout_width="match_parent"
-                style="@style/TextView.Assistant"
-                android:hint="请输入金额"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-
-
-
-
-    </LinearLayout>
 
     </FrameLayout>
 

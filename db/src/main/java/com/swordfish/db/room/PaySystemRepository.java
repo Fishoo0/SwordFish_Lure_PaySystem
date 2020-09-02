@@ -4,11 +4,16 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.swordfish.base.BaseApplication;
+
 import java.util.List;
 
-public class PaySystemRepository implements IPaySystemRepository {
+public class PaySystemRepository {
 
     private PaySystemDao mPaySystemDao;
+
+
+    public static PaySystemRepository INSTANCE = new PaySystemRepository(BaseApplication.INSTANCE);;
 
 
     public PaySystemRepository(Application application) {
@@ -16,55 +21,50 @@ public class PaySystemRepository implements IPaySystemRepository {
         mPaySystemDao = db.dao();
     }
 
-
-    @Override
     public void addUser(User user) {
         PaySystemRoomDataBase.databaseWriteExecutor.execute(() -> {
             mPaySystemDao.insertUser(user);
         });
     }
 
-    @Override
-    public LiveData<User> getUser(int telephone) {
-        return null;
+    public LiveData<List<User>> getAllUsers() {
+        return mPaySystemDao.getAllUsers();
     }
 
-    @Override
-    public LiveData<List<User>> getUsers() {
-        return null;
+    public LiveData<List<User>> searchUsers(int telephone) {
+        return mPaySystemDao.searchUsers(telephone);
     }
 
-    @Override
-    public void addPremium(User user, Premium premium) {
 
-    }
-
-    @Override
-    public LiveData<User> getPremium(int telephone) {
-        return null;
-    }
-
-    @Override
-    public LiveData<List<User>> getPremiums() {
-        return null;
-    }
-
-    @Override
     public void addLog(LogItem log) {
+        mPaySystemDao.insertLog(log);
     }
 
-    @Override
     public LiveData<List<LogItem>> getAllLogs() {
+        return mPaySystemDao.getAllLogs();
+    }
+
+    public LiveData<List<LogItem>> searchLogs(int telephone) {
+
         return null;
     }
 
-    @Override
-    public LiveData<List<LogItem>> getLogs(int telephone) {
-        return null;
-    }
-
-    @Override
     public LiveData<List<LogItem>> getTodayLogs() {
         return null;
     }
+
+
+    public void addPremium(Premium premium) {
+        mPaySystemDao.insertPremium(premium);
+    }
+
+    public LiveData<List<Premium>> searchPremium(int telephone) {
+        return null;
+    }
+
+    public LiveData<List<Premium>> getAllPremiums() {
+        return mPaySystemDao.getAllPremiums();
+    }
+
+
 }

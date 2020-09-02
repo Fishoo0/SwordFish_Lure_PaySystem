@@ -3,12 +3,11 @@ package com.swordfish.paysystem.users;
 import android.view.View;
 import android.widget.AdapterView;
 
-import androidx.fragment.app.Fragment;
 
-public class FinishedUsersFragment extends UserListFragment {
+public class FishingFragment extends LogListFragment {
 
-    public FinishedUsersFragment(int index) {
-        super(index,"Finished");
+    public FishingFragment(int index) {
+        super(index,"Fishing");
     }
 
     @Override

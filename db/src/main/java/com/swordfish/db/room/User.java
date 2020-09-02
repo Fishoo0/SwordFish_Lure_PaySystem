@@ -11,8 +11,7 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    private int id;
-
+    public int id;
 
     public int telephone;
 

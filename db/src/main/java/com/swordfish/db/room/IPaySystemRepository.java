@@ -12,12 +12,16 @@ public interface IPaySystemRepository {
 
     LiveData<List<User>> getUsers();
 
+    LiveData<List<User>> searchUsers(int telephone);
+
+
 
     void addPremium(User user, Premium premium);
 
     LiveData<User> getPremium(int telephone);
 
     LiveData<List<User>> getPremiums();
+
 
 
     void addLog(LogItem log);

@@ -1,6 +1,7 @@
 package com.swordfish.paysystem;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,16 +11,16 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.swordfish.paysystem.users.FinishedUsersFragment;
-import com.swordfish.paysystem.users.FishingUsersFragment;
-import com.swordfish.paysystem.users.TimeOutUsersFragment;
-import com.swordfish.paysystem.users.UserListFragment;
+import com.swordfish.paysystem.users.FinishedFragment;
+import com.swordfish.paysystem.users.FishingFragment;
+import com.swordfish.paysystem.users.TimeOutFragment;
+import com.swordfish.paysystem.users.LogListFragment;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class WorkingActivity extends AppCompatActivity {
+public class WorkingActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,12 +30,12 @@ public class WorkingActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.view_pager);
 
         TabLayout tab = findViewById(R.id.viw_pager_tablayout);
-        tab.setupWithViewPager(viewPager,true);
+        tab.setupWithViewPager(viewPager, true);
 
-        Map<Integer, UserListFragment> map = new HashMap();
-        map.put(0, new FishingUsersFragment(0));
-        map.put(1, new TimeOutUsersFragment(1));
-        map.put(2, new FinishedUsersFragment(2));
+        Map<Integer, LogListFragment> map = new HashMap();
+        map.put(0, new FishingFragment(0));
+        map.put(1, new TimeOutFragment(1));
+        map.put(2, new FinishedFragment(2));
 
         FragmentPagerAdapter fragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
 
@@ -52,10 +53,19 @@ public class WorkingActivity extends AppCompatActivity {
             @Nullable
             @Override
             public CharSequence getPageTitle(int position) {
-                return ((UserListFragment)map.get(position)).getTitle();
+                return ((LogListFragment) map.get(position)).getTitle();
             }
         };
 
         viewPager.setAdapter(fragmentPagerAdapter);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.new_customer:
+
+                break;
+        }
     }
 }

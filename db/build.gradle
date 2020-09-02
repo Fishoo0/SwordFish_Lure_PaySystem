@@ -30,6 +30,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompat"
 
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    implementation project(path: ':base')
     annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
 
 // Lifecycle components

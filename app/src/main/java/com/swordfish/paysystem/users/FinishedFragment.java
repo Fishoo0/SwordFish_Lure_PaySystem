@@ -3,12 +3,10 @@ package com.swordfish.paysystem.users;
 import android.view.View;
 import android.widget.AdapterView;
 
-import androidx.fragment.app.Fragment;
+public class FinishedFragment extends LogListFragment {
 
-public class TimeOutUsersFragment extends UserListFragment {
-
-    public TimeOutUsersFragment(int index) {
-        super(index,"TimeOut");
+    public FinishedFragment(int index) {
+        super(index,"Finished");
     }
 
     @Override
