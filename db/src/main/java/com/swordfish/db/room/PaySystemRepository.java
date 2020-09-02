@@ -51,7 +51,6 @@ public class PaySystemRepository implements IPaySystemRepository {
 
     @Override
     public void addLog(LogItem log) {
-
     }
 
     @Override

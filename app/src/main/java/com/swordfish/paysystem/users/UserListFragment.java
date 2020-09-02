@@ -29,12 +29,21 @@ public abstract class UserListFragment extends Fragment implements AdapterView.O
 
     private UserListViewModel mViewModel;
 
+    public UserListFragment(int index, String title) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("index",index);
+        bundle.putString("title",title);
+        this.setArguments(bundle);
+    }
+
+    public String getTitle() {
+        return getArguments().getString("title");
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mIndex = getArguments().getInt("index");
-
         mViewModel = ViewModelProviders.of(getActivity()).get(UserListViewModel.class);
     }
 
@@ -79,6 +88,8 @@ public abstract class UserListFragment extends Fragment implements AdapterView.O
             return i;
         }
 
+
+
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             if(view.getTag() == null) {
@@ -91,6 +102,7 @@ public abstract class UserListFragment extends Fragment implements AdapterView.O
 
             return holder.view;
         }
+
 
         class ViewHolder {
 
@@ -114,16 +126,13 @@ public abstract class UserListFragment extends Fragment implements AdapterView.O
                 name = view.findViewById(R.id.name);
                 tel = view.findViewById(R.id.telephone);
                 premium = view.findViewById(R.id.premium);
-
             }
 
 
             void updateView(LogItem item) {
-
                 id.setText(item.id + "");
                 name.setText(item.user.name);
                 tel.setText(item.user.telephone);
-
                 premium.setText(item.user.premium == null ? "否" : "是");
             }
 
