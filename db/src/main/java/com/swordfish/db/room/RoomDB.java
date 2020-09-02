@@ -35,22 +35,22 @@ public class RoomDB implements IPaySystemRepository {
     }
 
     @Override
-    public void addLog(ConsumeLog log) {
+    public void addLog(LogItem log) {
 
     }
 
     @Override
-    public List<ConsumeLog> getAllLogs() {
+    public List<LogItem> getAllLogs() {
         return null;
     }
 
     @Override
-    public List<ConsumeLog> getLogs(int telephone) {
+    public List<LogItem> getLogs(int telephone) {
         return null;
     }
 
     @Override
-    public List<ConsumeLog> getTodayLogs() {
+    public List<LogItem> getTodayLogs() {
         return null;
     }
 }

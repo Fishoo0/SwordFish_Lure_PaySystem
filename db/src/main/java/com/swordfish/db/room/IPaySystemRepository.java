@@ -20,13 +20,13 @@ public interface IPaySystemRepository {
     LiveData<List<User>> getPremiums();
 
 
-    void addLog(ConsumeLog log);
+    void addLog(LogItem log);
 
-    LiveData<List<ConsumeLog>> getAllLogs();
+    LiveData<List<LogItem>> getAllLogs();
 
-    LiveData<List<ConsumeLog>> getLogs(int telephone);
+    LiveData<List<LogItem>> getLogs(int telephone);
 
-    LiveData<List<ConsumeLog>> getTodayLogs();
+    LiveData<List<LogItem>> getTodayLogs();
 
 
 }

@@ -1,15 +1,15 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.swordfish.paysystem"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -28,14 +28,13 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompat"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.constraintlayout"
-    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.ext.lifecycleExtensions"
 
+// Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.archLifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.archLifecycleVersion"
+
+// UI
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
-
-
-
-    implementation project(path: ':base')
-    implementation project(path: ':db')
+    
 }

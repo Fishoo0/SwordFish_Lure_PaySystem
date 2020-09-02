@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Premium.class, ConsumeLog.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Premium.class, LogItem.class}, version = 1, exportSchema = false)
 public abstract class PaySystemRoomDataBase extends RoomDatabase {
 
     public abstract PaySystemDao dao();

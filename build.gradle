@@ -37,4 +37,8 @@ ext {
     archLifecycleVersion = '2.2.0'
     materialVersion = '1.0.0'
 
+    lifecycleExtensions = '2.1.0'
+
+
+
 }

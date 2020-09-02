@@ -50,22 +50,22 @@ public class PaySystemRepository implements IPaySystemRepository {
     }
 
     @Override
-    public void addLog(ConsumeLog log) {
+    public void addLog(LogItem log) {
 
     }
 
     @Override
-    public LiveData<List<ConsumeLog>> getAllLogs() {
+    public LiveData<List<LogItem>> getAllLogs() {
         return null;
     }
 
     @Override
-    public LiveData<List<ConsumeLog>> getLogs(int telephone) {
+    public LiveData<List<LogItem>> getLogs(int telephone) {
         return null;
     }
 
     @Override
-    public LiveData<List<ConsumeLog>> getTodayLogs() {
+    public LiveData<List<LogItem>> getTodayLogs() {
         return null;
     }
 }
