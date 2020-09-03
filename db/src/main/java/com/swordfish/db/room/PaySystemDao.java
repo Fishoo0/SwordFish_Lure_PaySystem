@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -13,36 +15,29 @@ public interface PaySystemDao {
     @Insert
     void insertUser(User user);
 
+    @Update
+    void updateUser(User user);
 
-    @Query("SELECT * FROM user_table ORDER BY id ASC")
+    @Query("SELECT * FROM user_table ORDER BY userId ASC")
     LiveData<List<User>> getAllUsers();
 
-
-    @Query("SELECT * FROM user_table WHERE telephone LIKE :telephone")
-    LiveData<List<User>> searchUsers(int telephone);
+    @Query("SELECT * FROM user_table WHERE userId LIKE :telephone")
+    List<User> searchUsers(int telephone);
 
 
     @Insert
-    void insertLog(LogItem log);
+    void insertLog(Log log);
+
+    @Update
+    void updateLog(Log log);
 
 
-    @Query("SELECT * FROM log_table ORDER BY id ASC")
+    @Transaction
+    @Query("SELECT * FROM log_table ORDER BY logId ASC")
     LiveData<List<LogItem>> getAllLogs();
 
-
-    @Query("SELECT * FROM log_table WHERE id LIKE :id")
-    LiveData<List<LogItem>> searchLogs(int id);
-
-
-    @Insert
-    void insertPremium(Premium premium);
-
-
-    @Query("SELECT * FROM premium_table ORDER BY id ASC")
-    LiveData<List<Premium>> getAllPremiums();
-
-
-    @Query("SELECT * FROM premium_table WHERE id LIKE :id")
-    LiveData<List<LogItem>> searchPremiums(int id);
+    @Transaction
+    @Query("SELECT * FROM log_table WHERE createTime > :timeStart AND createTime < :timeEnd AND status = :status")
+    LiveData<List<LogItem>> searchLogs(long timeStart, long timeEnd, int status);
 
 }

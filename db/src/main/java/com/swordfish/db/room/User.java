@@ -2,25 +2,33 @@ package com.swordfish.db.room;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "user_table")
 public class User {
 
-    @PrimaryKey(autoGenerate = true)
     @NonNull
-    @ColumnInfo(name = "id")
-    public int id;
-
+    @PrimaryKey
+    @ColumnInfo(name = "userId")
     public int telephone;
 
     public String name;
+
     public String wechat;
-    public String carNumber;
     public String location;
+
     public String inviter;
 
+    @Embedded
     public Premium premium;
+
+    public static class Premium {
+        public int premiumId;
+        public String createTime;
+        public int amount;
+    }
+
 
 }

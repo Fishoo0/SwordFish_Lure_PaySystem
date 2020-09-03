@@ -3,7 +3,9 @@ package com.swordfish.paysystem.users;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,8 +33,8 @@ public class ManageUserActivity extends AppCompatActivity implements View.OnClic
 
     EditText mTelEdit;
     EditText mNameEdit;
-    EditText mPayEdit;
-
+    EditText mPaidEdit;
+    EditText mRentCardEdit;
     ListPopupWindow mSearchPopWindow;
 
     DataBaseViewModel mViewModel;
@@ -44,10 +46,10 @@ public class ManageUserActivity extends AppCompatActivity implements View.OnClic
 
         mTelEdit = findViewById(R.id.telephone_edittext);
         mNameEdit = findViewById(R.id.name_edittext);
-        mPayEdit = findViewById(R.id.amout_edittext);
+        mPaidEdit = findViewById(R.id.paid_edittext);
+        mRentCardEdit = findViewById(R.id.rent_card_edittext);
 
         mViewModel = DataBaseViewModel.INSTANCE;
-
 
         ListPopupWindow window = new ListPopupWindow(this);
         PopWindowAdapter adapter = new PopWindowAdapter(mViewModel.mUsersSearchedByPhone);
@@ -59,7 +61,7 @@ public class ManageUserActivity extends AppCompatActivity implements View.OnClic
 
         mTelEdit.addTextChangedListener(new TextWatcher() {
 
-            Handler handler = new Handler();
+            Handler handler = new Handler(Looper.getMainLooper());
 
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -72,7 +74,7 @@ public class ManageUserActivity extends AppCompatActivity implements View.OnClic
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mViewModel.searchUsers(Integer.parseInt(charSequence.toString()));
+                        mViewModel.searchUsers(parseInt(mTelEdit));
                     }
                 }, 400);
             }
@@ -84,13 +86,19 @@ public class ManageUserActivity extends AppCompatActivity implements View.OnClic
         });
     }
 
+    static int parseInt(EditText editText) {
+        String value = editText.getText().toString();
+        if(!TextUtils.isEmpty(value) && TextUtils.isDigitsOnly(value)) {
+            return Integer.parseInt(value);
+        }
+        return 0;
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.confirm:
-
-                mViewModel.mRepository.addUser(null);
-
+                mViewModel.addCustomer(parseInt(mTelEdit),mNameEdit.getText().toString(),parseInt(mPaidEdit),parseInt(mRentCardEdit));
                 break;
         }
     }
@@ -157,7 +165,6 @@ public class ManageUserActivity extends AppCompatActivity implements View.OnClic
             }
 
             void updateView(User user) {
-                id.setText(user.id);
                 telephone.setText(user.telephone);
                 name.setText(user.name);
             }

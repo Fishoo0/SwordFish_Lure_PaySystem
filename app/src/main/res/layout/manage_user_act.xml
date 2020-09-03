@@ -38,6 +38,7 @@
                     style="@style/TextView.Assistant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="请输入手机号" />
 
             </LinearLayout>
@@ -59,6 +60,7 @@
                     style="@style/TextView.Assistant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:hint="请输入名字" />
 
             </LinearLayout>
@@ -77,10 +79,11 @@
                     android:text="金额：" />
 
                 <EditText
-                    android:id="@+id/amout_edittext"
+                    android:id="@+id/paid_edittext"
                     style="@style/TextView.Assistant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="请输入金额" />
             </LinearLayout>
 
@@ -101,7 +104,9 @@
                     style="@style/TextView.Assistant"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="请输入卡号" />
+                    android:hint="请输入卡号"
+                    android:inputType="number"
+                    />
             </LinearLayout>
 
             <Button

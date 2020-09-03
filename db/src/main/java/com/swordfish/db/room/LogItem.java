@@ -1,26 +1,18 @@
 package com.swordfish.db.room;
 
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import androidx.room.Embedded;
+import androidx.room.Relation;
 
-@Entity(tableName = "log_table")
 public class LogItem {
 
+    @Embedded
+    public Log log;
 
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "id")
-    public int id;
-
-    public int amount;
-    public int paidType;
-
-    public int createTime;
-    public int endTime;
-
+    @Relation(
+            parentColumn = "logId",
+            entityColumn = "userId"
+    )
     public User user;
 
 }

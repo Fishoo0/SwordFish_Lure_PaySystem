@@ -130,7 +130,7 @@ public abstract class LogListFragment extends Fragment implements AdapterView.On
 
 
             void updateView(LogItem item) {
-                id.setText(item.id + "");
+                id.setText(item.log.logId + "");
                 name.setText(item.user.name);
                 tel.setText(item.user.telephone);
                 premium.setText(item.user.premium == null ? "否" : "是");
