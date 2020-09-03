@@ -9,9 +9,9 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "log_table")
 public class Log {
 
-    static final int STATUS_FISHING = 1;
-    static final int STATUS_TIMEOUT = 2;
-    static final int STATUS_FINISHED = 3;
+    public static final int STATUS_FISHING = 1;
+    public static final int STATUS_TIMEOUT = 2;
+    public static final int STATUS_FINISHED = 3;
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
