@@ -1,4 +1,4 @@
-package com.swordfish.paysystem.users;
+package com.swordfish.paysystem.view;
 
 import android.os.Handler;
 import android.os.Message;
@@ -65,7 +65,9 @@ public class DataBaseViewModel extends ViewModel implements LifecycleOwner {
         public State getCurrentState() {
             return null;
         }
-    };
+    }
+
+    ;
 
     @Override
     protected void onCleared() {
@@ -85,7 +87,7 @@ public class DataBaseViewModel extends ViewModel implements LifecycleOwner {
             return mFishingLogs;
         } else if (index == 1) {
             return mTimeOutLogs;
-        } else if (index == 2){
+        } else if (index == 2) {
             return mFinishedLogs;
         } else {
             throw new RuntimeException("Can not get logs, invalid params of index -> " + index);
@@ -93,47 +95,51 @@ public class DataBaseViewModel extends ViewModel implements LifecycleOwner {
     }
 
 
-
-    public void addLogItem(int telephone, String name, int amount, int cardNumber) {
+    public void addLogItem(long telephone, String name, int amount, int cardNumber) {
         User user = null;
 
-        if(mAllUsers.getValue() != null) {
-            for( User u: mAllUsers.getValue()) {
-                if(user.telephone == telephone) {
+        if (mAllUsers.getValue() != null) {
+            for (User u : mAllUsers.getValue()) {
+                if (user.telephone == telephone) {
                     user = u;
                     break;
                 }
             }
         }
 
-        if(user == null) {
+        if (user == null) {
+            user = new User();
             user.telephone = telephone;
             user.name = name;
-            mRepository.addUser(user);
         }
 
         LogItem logItem = new LogItem();
         logItem.user = user;
         logItem.log = new Log();
+        logItem.log.userId = user.telephone;
         logItem.log.paidAmount = amount;
+        logItem.log.startTime = System.currentTimeMillis();
         logItem.log.rentCardNumber = cardNumber;
+
+        logItem.log.status = Log.STATUS_FISHING;
+
         mRepository.addLog(logItem);
     }
 
-    public void searchUsers(int phone) {
+    public void searchUsers(long phone) {
         mRepository.searchUsers(phone);
     }
 
-   final class TimeOutRefresher extends Handler {
+    final class TimeOutRefresher extends Handler {
 
         void start() {
             sendEmptyMessage(0);
         }
 
         void refreshTimeOut() {
-            if(mFishingLogs.getValue() != null) {
-                for(LogItem item: mFishingLogs.getValue()) {
-                    if(System.currentTimeMillis() > item.log.endTime) {
+            if (mFishingLogs.getValue() != null) {
+                for (LogItem item : mFishingLogs.getValue()) {
+                    if (System.currentTimeMillis() > item.log.endTime) {
                         timeOutLogItem(item);
                     }
                 }
@@ -144,9 +150,9 @@ public class DataBaseViewModel extends ViewModel implements LifecycleOwner {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             refreshTimeOut();
-            sendEmptyMessageDelayed(0,10 *1000);
+            sendEmptyMessageDelayed(0, 10 * 1000);
         }
-    };
+    }
 
     void timeOutLogItem(LogItem log) {
         log.log.status = Log.STATUS_TIMEOUT;

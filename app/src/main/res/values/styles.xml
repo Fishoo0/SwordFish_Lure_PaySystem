@@ -8,7 +8,7 @@
     </style>
 
 
-    <style name="Activity" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <style name="Activity" parent="AppTheme"/>
 
     <style name="Activity.Normal" parent="Activity">
         <item name="android:screenOrientation">landscape</item>
@@ -22,7 +22,6 @@
     </style>
 
     <style name="TextView.Normal.Big" parent="TextView.Normal" >
-        <item name="android:textColor">#333333</item>
         <item name="android:textSize">18dp</item>
     </style>
 

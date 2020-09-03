@@ -1,5 +1,6 @@
 package com.swordfish.paysystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,10 +12,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.swordfish.paysystem.users.FinishedFragment;
-import com.swordfish.paysystem.users.FishingFragment;
-import com.swordfish.paysystem.users.TimeOutFragment;
-import com.swordfish.paysystem.users.LogListFragment;
+import com.swordfish.paysystem.view.AddLogActivity;
+import com.swordfish.paysystem.view.FinishedFragment;
+import com.swordfish.paysystem.view.FishingFragment;
+import com.swordfish.paysystem.view.TimeOutFragment;
+import com.swordfish.paysystem.view.LogListFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,7 +66,7 @@ public class WorkingActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.new_customer:
-
+                startActivity(new Intent(this, AddLogActivity.class));
                 break;
         }
     }

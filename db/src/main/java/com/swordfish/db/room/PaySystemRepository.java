@@ -3,12 +3,16 @@ package com.swordfish.db.room;
 import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.swordfish.base.BaseApplication;
 import java.util.List;
 
 public class PaySystemRepository {
+
+    private static final String TAG = PaySystemRepository.class.getSimpleName();
 
     private PaySystemDao mPaySystemDao;
 
@@ -39,7 +43,7 @@ public class PaySystemRepository {
 
     MutableLiveData<List<User>> mSearchUsersLiveData = new MutableLiveData<>();
 
-    public LiveData<List<User>> searchUsers(int telephone) {
+    public LiveData<List<User>> searchUsers(long telephone) {
         PaySystemRoomDataBase.databaseWriteExecutor.execute(() -> {
            List<User> users =  mPaySystemDao.searchUsers(telephone);
            mHandler.post(() -> {
@@ -71,6 +75,8 @@ public class PaySystemRepository {
         final long oneDay = 24 * 60 * 60 * 1000;
         final long startOfToday = ((currentTime / oneDay))  * oneDay;
         final long endOfToday = startOfToday + oneDay;
+
+        Log.i(TAG, " startOfToday -> " + startOfToday + ", endOfToday -> " + endOfToday);
         return mPaySystemDao.searchLogs(startOfToday,endOfToday,status);
     }
 

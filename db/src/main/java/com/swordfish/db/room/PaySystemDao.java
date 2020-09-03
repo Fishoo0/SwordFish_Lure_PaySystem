@@ -22,7 +22,7 @@ public interface PaySystemDao {
     LiveData<List<User>> getAllUsers();
 
     @Query("SELECT * FROM user_table WHERE userId LIKE :telephone")
-    List<User> searchUsers(int telephone);
+    List<User> searchUsers(long telephone);
 
 
     @Insert
@@ -37,7 +37,7 @@ public interface PaySystemDao {
     LiveData<List<LogItem>> getAllLogs();
 
     @Transaction
-    @Query("SELECT * FROM log_table WHERE createTime > :timeStart AND createTime < :timeEnd AND status = :status")
+    @Query("SELECT * FROM log_table WHERE startTime > :timeStart AND startTime < :timeEnd AND status = :status")
     LiveData<List<LogItem>> searchLogs(long timeStart, long timeEnd, int status);
 
 }

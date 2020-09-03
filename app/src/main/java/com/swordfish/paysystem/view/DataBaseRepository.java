@@ -1,4 +1,4 @@
-package com.swordfish.paysystem.users;
+package com.swordfish.paysystem.view;
 
 public class DataBaseRepository {
 

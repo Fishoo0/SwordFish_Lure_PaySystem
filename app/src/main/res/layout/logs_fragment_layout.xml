@@ -8,4 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+
+    <TextView
+        android:id="@+id/empty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextView.Assistant"
+        android:paddingBottom="100dp"
+        android:text="暂时无内容哦"
+        android:layout_gravity="center"
+        />
+
 </FrameLayout>

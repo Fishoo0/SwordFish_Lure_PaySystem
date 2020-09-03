@@ -6,13 +6,15 @@ import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "user_table")
-public class User {
+public class User implements Serializable {
 
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "userId")
-    public int telephone;
+    public long telephone;
 
     public String name;
 

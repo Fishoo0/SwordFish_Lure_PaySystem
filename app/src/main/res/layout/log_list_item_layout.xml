@@ -1,136 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:layout_height="match_parent">
 
+    <com.swordfish.paysystem.view.UserListItemView
+        android:id="@+id/user_list_itemview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_list_itemview"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView.Assistant"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="套餐: " />
+
+            <TextView
+                android:id="@+id/money"
+                style="@style/TextView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12344" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView.Assistant"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="时间: " />
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/TextView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06: 00 ~ 07:00" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView.Assistant"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="领取卡号: " />
+
+            <TextView
+                android:id="@+id/card_no"
+                style="@style/TextView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12344" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView.Assistant"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="回鱼金额 : " />
+
+            <TextView
+                android:id="@+id/fish_back"
+                style="@style/TextView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12344" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView.Assistant"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="回鱼信息 : " />
+
+            <TextView
+                android:id="@+id/fish_back_msg"
+                style="@style/TextView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12344" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView.Assistant"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="累计收取 : " />
+
+            <TextView
+                android:id="@+id/earn"
+                style="@style/TextView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12344" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView.Assistant"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="备注信息 : " />
+
+            <TextView
+                android:id="@+id/extra_msg"
+                style="@style/TextView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12344" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/id"
-        style="@style/TextView.Normal"
-        android:layout_width="match_parent"
+        android:id="@+id/time_left"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="id: " />
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="10dp"
+        android:text="剩余20分钟"
+        android:textSize="30dp" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/name"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="姓名: " />
-
-        <TextView
-            android:id="@+id/telephone"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="手机号: 1333434343" />
-
-
-        <TextView
-            android:id="@+id/premium"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="会员信息: " />
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/amount"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="套餐：500" />
-
-        <TextView
-            android:id="@+id/create_time"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="开卡时间: 12:30" />
-
-        <TextView
-            android:id="@+id/left_time"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="剩余时间: 40分钟" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/card_no"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="领取卡号：002" />
-
-        <TextView
-            android:id="@+id/extra_info"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="备注信息: " />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/fish_back_money"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="回鱼金额：100 " />
-
-        <TextView
-            android:id="@+id/fish_back"
-            style="@style/TextView.Normal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="回鱼备注: 12:30" />
-
-
-
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

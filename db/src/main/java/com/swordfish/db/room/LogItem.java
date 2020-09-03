@@ -4,13 +4,15 @@ package com.swordfish.db.room;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
-public class LogItem {
+import java.io.Serializable;
+
+public class LogItem implements Serializable {
 
     @Embedded
     public Log log;
 
     @Relation(
-            parentColumn = "logId",
+            parentColumn = "userId",
             entityColumn = "userId"
     )
     public User user;

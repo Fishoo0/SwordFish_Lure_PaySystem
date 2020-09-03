@@ -1,4 +1,4 @@
-package com.swordfish.paysystem.users;
+package com.swordfish.paysystem.view;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ public class ManageUserActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
 
 
 }

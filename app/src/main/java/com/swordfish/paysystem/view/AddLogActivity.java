@@ -1,19 +1,18 @@
-package com.swordfish.paysystem.users;
+package com.swordfish.paysystem.view;
 
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,10 +25,13 @@ import com.swordfish.paysystem.R;
 
 import java.util.List;
 
+import static com.swordfish.paysystem.utils.Utils.parseInt;
+import static com.swordfish.paysystem.utils.Utils.parseLong;
+
 /**
  * This is activity is designed for adding/searching/premium and etc ...
  */
-public class AddLogActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddLogActivity extends AppCompatActivity {
 
     EditText mTelEdit;
     EditText mNameEdit;
@@ -74,7 +76,7 @@ public class AddLogActivity extends AppCompatActivity implements View.OnClickLis
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mViewModel.searchUsers(parseInt(mTelEdit));
+                        mViewModel.searchUsers(parseLong(mTelEdit));
                     }
                 }, 400);
             }
@@ -86,26 +88,25 @@ public class AddLogActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    static int parseInt(EditText editText) {
-        String value = editText.getText().toString();
-        if(!TextUtils.isEmpty(value) && TextUtils.isDigitsOnly(value)) {
-            return Integer.parseInt(value);
-        }
-        return 0;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_confirm, menu);
+        return true;
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.confirm:
-                mViewModel.addLogItem(parseInt(mTelEdit),mNameEdit.getText().toString(),parseInt(mPaidEdit),parseInt(mRentCardEdit));
-                break;
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_confirm:
+                mViewModel.addLogItem(parseLong(mTelEdit), mNameEdit.getText().toString(), parseInt(mPaidEdit), parseInt(mRentCardEdit));
+                finish();
+                return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-
     class PopWindowAdapter extends BaseAdapter {
-
 
         private List<User> mList;
 
@@ -141,34 +142,16 @@ public class AddLogActivity extends AppCompatActivity implements View.OnClickLis
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            if (view.getTag() == null) {
-                ViewHolder holder = new ViewHolder(LayoutInflater.from(viewGroup.getContext()));
-                view.setTag(holder);
+            UserListItemView itemView;
+            if (view == null) {
+                itemView = new UserListItemView(viewGroup.getContext(), null);
+            } else {
+                itemView = (UserListItemView) view;
             }
-            ViewHolder holder = (ViewHolder) view.getTag();
-            holder.updateView((User) getItem(i));
-            return holder.view;
+            itemView.updateView((User) getItem(i));
+            return itemView;
         }
 
-
-        class ViewHolder {
-            View view;
-
-            TextView id;
-            TextView telephone;
-            TextView name;
-
-            public ViewHolder(LayoutInflater layoutInflater) {
-                view = layoutInflater.inflate(R.layout.user_list_item, null);
-                telephone = view.findViewById(R.id.telephone);
-                name = view.findViewById(R.id.name);
-            }
-
-            void updateView(User user) {
-                telephone.setText(user.telephone);
-                name.setText(user.name);
-            }
-        }
     }
 
 }

@@ -1,6 +1,5 @@
-package com.swordfish.paysystem.users;
+package com.swordfish.paysystem.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.swordfish.db.room.LogItem;
 import com.swordfish.paysystem.R;
@@ -27,12 +25,12 @@ public abstract class LogListFragment extends Fragment implements AdapterView.On
 
     protected int mIndex;
 
-    private DataBaseViewModel mViewModel;
+    protected DataBaseViewModel mViewModel;
 
     public LogListFragment(int index, String title) {
         Bundle bundle = new Bundle();
-        bundle.putInt("index",index);
-        bundle.putString("title",title);
+        bundle.putInt("index", index);
+        bundle.putString("title", title);
         this.setArguments(bundle);
     }
 
@@ -50,13 +48,28 @@ public abstract class LogListFragment extends Fragment implements AdapterView.On
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.logs_fragment_layout,null);
+        View view = inflater.inflate(R.layout.logs_fragment_layout, null);
         ListView listView = view.findViewById(R.id.listview);
-        listView.setAdapter(new ListAdapter(mViewModel.getLogs(mIndex)));
+
+        LiveData<List<LogItem>> liveData = mViewModel.getLogs(mIndex);
+        listView.setAdapter(new ListAdapter(liveData));
         listView.setOnItemClickListener(this);
+
+        TextView emptyView = view.findViewById(R.id.empty_text);
+        emptyView.setText("暂无数据");
+        liveData.observe(getActivity(), new Observer<List<LogItem>>() {
+            @Override
+            public void onChanged(List<LogItem> logItems) {
+                if (logItems == null || logItems.size() == 0) {
+                    emptyView.setVisibility(View.VISIBLE);
+                } else {
+                    emptyView.setVisibility(View.GONE);
+                }
+            }
+        });
+
         return view;
     }
-
 
 
     class ListAdapter extends BaseAdapter {
@@ -89,53 +102,18 @@ public abstract class LogListFragment extends Fragment implements AdapterView.On
         }
 
 
-
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            if(view.getTag() == null) {
-                ViewHolder holder = new ViewHolder(viewGroup.getContext());
-                view.setTag(holder);
+            LogItemListItemView itemView;
+            if (view == null) {
+                itemView = new LogItemListItemView(viewGroup.getContext(), null);
+            } else {
+                itemView = (LogItemListItemView) view;
             }
-
-            ViewHolder holder = (ViewHolder) view.getTag();
-            holder.updateView((LogItem) getItem(i));
-
-            return holder.view;
+            itemView.updateView((LogItem) getItem(i));
+            return itemView;
         }
 
 
-        class ViewHolder {
-
-            View view;
-
-            TextView id;
-            TextView name;
-            TextView tel;
-
-            TextView paidAmount;
-
-            TextView startedTime;
-            TextView leftTime;
-
-            TextView premium;
-
-            ViewHolder(Context context) {
-                view = LayoutInflater.from(context).inflate(R.layout.log_list_item_layout,null);
-
-                id = view.findViewById(R.id.id);
-                name = view.findViewById(R.id.name);
-                tel = view.findViewById(R.id.telephone);
-                premium = view.findViewById(R.id.premium);
-            }
-
-
-            void updateView(LogItem item) {
-                id.setText(item.log.logId + "");
-                name.setText(item.user.name);
-                tel.setText(item.user.telephone);
-                premium.setText(item.user.premium == null ? "否" : "是");
-            }
-
-        }
     }
 }
